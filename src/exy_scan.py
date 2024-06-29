@@ -1,6 +1,6 @@
 import os
 import pickle
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import requests
 from bs4 import BeautifulSoup
@@ -63,8 +63,8 @@ def get_albums_list(
         print(f'Colleting new albums from the page {n}...')
         n = n + 1
 
-        if last_album in [a.title for a in albums]:
-            break
+        # if last_album in [a.title for a in albums]:
+        #     break
 
     if new_entries:
         save_last_abum(new_entries[0])
@@ -91,8 +91,7 @@ def filter_categories(
         return [
             album.title
             for album in albums
-            for c in album.categories
-            if c in user_categories
+            if bool(set(album.categories) & set(user_categories))
         ]
 
     return [album.title for album in albums]
@@ -113,10 +112,10 @@ def album_dataclass(
 
     @dataclass
     class Album:
-        title = album_title
-        categories = album_categories
+        title: str
+        categories: list[str] = field(default_factory=list)
 
-    return Album
+    return Album(album_title, album_categories)
 
 
 def get_albums_info(url: str) -> list[dataclass]:
