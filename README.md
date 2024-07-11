@@ -19,6 +19,7 @@ CLIENT_ID='your-client-id'
 CLIENT_SECRET='your-secret-id'
 REDIRECT_URI='the-callback-uri'
 USERNAME='your-username'
+scope='user-library-modify'
 ```
 
 [Check here to see how to get spotify credentials](https://developer.spotify.com/documentation/web-api)
@@ -33,7 +34,7 @@ Let's say you wants add new albums for soul, punk and R&B:
 
 ### Steps
 - [x] exy module
-- [ ] spotify module
-- [ ] main file
+- [x] spotify module
+- [x] main file
 - [ ] CLI
 - [ ] tests
