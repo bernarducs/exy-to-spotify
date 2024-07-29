@@ -1,8 +1,13 @@
+import os
+import pickle
 from dataclasses import dataclass, field
+from datetime import datetime
+
 import requests
 from bs4 import BeautifulSoup
 from dateutil.parser import parse
-from datetime import datetime
+
+from src.constants import LAST_ALBUM_FILE
 
 
 @dataclass
@@ -47,3 +52,31 @@ def get_albums_data(url: str) -> list[Album]:
         albums.append(Album(title, link, date_post, tags))
 
     return albums
+
+
+def dump_last_albums(albums: list[Album]) -> None:
+    """Dumps a pickle file of last album.
+
+    Args:
+        album_name (str): Title of last album.
+    """
+
+    with open(LAST_ALBUM_FILE, 'wb') as f:
+        pickle.dump(albums, f)
+        print(f'\n💾 The saved albums was pickled in {LAST_ALBUM_FILE}.')
+
+
+def get_last_album() -> Album | str:
+    """Get the last album pickled.
+
+    Returns:
+        Album: Album dataclass.
+    """
+
+    if not os.path.exists(LAST_ALBUM_FILE):
+        return ''
+
+    with open(LAST_ALBUM_FILE, 'rb') as f:
+        albums = pickle.load(f)
+
+    return albums[0]

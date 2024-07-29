@@ -1,1 +1,1 @@
-from .handle import add_album
+from .handle import add_album  # noqa: F401

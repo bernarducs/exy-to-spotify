@@ -1,7 +1,6 @@
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-
 from dotenv import dotenv_values
+from spotipy.oauth2 import SpotifyOAuth
 
 
 def cursor():
