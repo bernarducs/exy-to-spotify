@@ -1,4 +1,4 @@
-from src.constants import URL, console
+from constants import URL, console
 
 from .scrape import Album, get_albums_data, get_last_album
 

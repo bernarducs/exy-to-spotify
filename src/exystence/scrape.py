@@ -7,7 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil.parser import parse
 
-from src.constants import LAST_ALBUM_FILE
+from constants import LAST_ALBUM_FILE
 
 
 @dataclass

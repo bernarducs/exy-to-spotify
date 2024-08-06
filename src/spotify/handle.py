@@ -1,7 +1,7 @@
 from thefuzz import fuzz
 
-from src.constants import console
-from src.exystence import Album
+from constants import console
+from exystence import Album
 
 from .auth import cursor
 
